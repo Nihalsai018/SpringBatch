@@ -1,9 +1,6 @@
-package com.example.Cloud.CsvtoDataBase.Confing;
+package com.example.Cloud.CsvtoDataBase.Config;
 
-import java.util.Date;
-
-import javax.sql.DataSource;
-
+import com.example.Cloud.CsvtoDataBase.Entity.Product;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
@@ -26,7 +23,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import com.example.Cloud.CsvtoDataBase.Entity.Product;
+import javax.sql.DataSource;
+import java.util.Date;
 
 
 @Configuration
@@ -82,6 +80,10 @@ public class BatchConfing {
 		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
 		return writer;
 	}
+	public final void test() {
+	    System.out.println("nihal");
+	    
+	}
 
 	//4. listener
 	/*@Bean
@@ -114,12 +116,20 @@ public class BatchConfing {
 	@Bean
 	public Step stepA() {
 		return sf.get("stepA")
-				.<Product,Product>chunk(3)
+				. <Product,Product>chunk(5)
 				.reader(reader())
 				.processor(procesor())
 				.writer(writer())
 				.build();
 	}
+/*	public Step stepB() {
+		return sf.get("stepA")
+				.  <Product,Product>chunk(3)
+				.reader(reader())
+				.processor(procesor())
+				.writer(writer())
+				.build(); */
+
 
 	//7. JobBuilderFactory
 	@Autowired

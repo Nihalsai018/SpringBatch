@@ -13,7 +13,7 @@ public class MyJobRunner implements CommandLineRunner {
 	
 	@Autowired
 	private Job jobA;
-	
+
 	@Autowired
 	private JobLauncher  jobLauncher;
 
